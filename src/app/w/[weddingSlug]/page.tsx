@@ -20,7 +20,7 @@ export default async function WeddingLandingPage({
 
   let coupleName: string | null = null;
   if (demoMode()) {
-    coupleName = "Ahmad & Mawra";
+    coupleName = "Syed Bilal Zaidi & Sara Javed";
   } else {
     const wedding = await prisma.wedding
       .findUnique({

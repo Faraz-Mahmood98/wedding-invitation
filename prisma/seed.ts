@@ -5,7 +5,7 @@ import { DEFAULT_OPENING_IMAGE } from "../src/lib/images";
 
 const prisma = new PrismaClient();
 
-const WEDDING_SLUG = "ahmad-mawra";
+const WEDDING_SLUG = "bilal-sara";
 
 type Bi = { en: string; ur: string };
 
@@ -20,8 +20,8 @@ async function main() {
   const wedding = await prisma.wedding.create({
     data: {
       slug: WEDDING_SLUG,
-      coupleNameEn: "Ahmad & Mawra",
-      coupleNameUr: "احمد اور ماورہ",
+      coupleNameEn: "Syed Bilal Zaidi & Sara Javed",
+      coupleNameUr: "سید بلال زیدی اور سارہ جاوید",
       theme: DEFAULT_THEME as unknown as Prisma.InputJsonValue,
       bismillahEnabled: true,
       musicUrl: null,
@@ -33,7 +33,7 @@ async function main() {
         "With hearts full of joy, we invite you to share in the celebration of our union. Your presence would mean the world to us.",
       personalMessageUr:
         "خوشی سے بھرے دلوں کے ساتھ، ہم آپ کو اپنی شادی کی خوشی میں شریک ہونے کی دعوت دیتے ہیں۔ آپ کی موجودگی ہمارے لیے بہت قیمتی ہوگی۔",
-      adminEmail: "ahmad.mawra@example.com",
+      adminEmail: "bilal.sara@example.com",
       passwordHash: sharedPasswordHash,
 
       events: {
@@ -47,8 +47,8 @@ async function main() {
             venueName: "The Grand Marquee",
             address: "Main Boulevard, Gulberg III, Lahore",
             mapsUrl: "https://maps.google.com/?q=Grand+Marquee+Lahore",
-            hostedByEn: "Ahmed Family",
-            hostedByUr: "احمد خاندان",
+            hostedByEn: "Zaidi Family",
+            hostedByUr: "زیدی خاندان",
             posterImage: null,
             dressNote: "Vibrant yellows and greens",
           },
@@ -58,11 +58,11 @@ async function main() {
             titleUr: "بارات",
             date: new Date("2026-12-05T00:00:00.000Z"),
             startTime: "19:30",
-            venueName: "Ahmed Residence",
+            venueName: "Zaidi Residence",
             address: "House 12, DHA Phase 5, Lahore",
             mapsUrl: "https://maps.google.com/?q=DHA+Phase+5+Lahore",
-            hostedByEn: "Ahmed Family",
-            hostedByUr: "احمد خاندان",
+            hostedByEn: "Zaidi Family",
+            hostedByUr: "زیدی خاندان",
             posterImage: null,
             dressNote: "Traditional festive wear",
           },
@@ -75,8 +75,8 @@ async function main() {
             venueName: "Pearl Continental Hotel",
             address: "Mall Road, Lahore",
             mapsUrl: "https://maps.google.com/?q=Pearl+Continental+Lahore",
-            hostedByEn: "Malik Family",
-            hostedByUr: "ملک خاندان",
+            hostedByEn: "Javed Family",
+            hostedByUr: "جاوید خاندان",
             posterImage: null,
             dressNote: "Formal elegance",
           },
@@ -88,23 +88,23 @@ async function main() {
           {
             side: Side.groom,
             order: 1,
-            headNameEn: "Mr. & Mrs. Ahmed",
-            headNameUr: "محترم و محترمہ احمد",
+            headNameEn: "Mr. & Mrs. Zaidi",
+            headNameUr: "محترم و محترمہ زیدی",
             memberNames: [
-              t("Hamza Ahmed", "حمزہ احمد"),
-              t("Zain Ahmed", "زین احمد"),
-              t("Hira Ahmed", "حرا احمد"),
+              t("Hamza Zaidi", "حمزہ زیدی"),
+              t("Zain Zaidi", "زین زیدی"),
+              t("Hira Zaidi", "حرا زیدی"),
             ],
           },
           {
             side: Side.bride,
             order: 1,
-            headNameEn: "Mr. & Mrs. Malik",
-            headNameUr: "محترم و محترمہ ملک",
+            headNameEn: "Farheena Javed",
+            headNameUr: "فرحینہ جاوید",
             memberNames: [
-              t("Mawra Malik", "ماورہ ملک"),
-              t("Faizan Malik", "فیضان ملک"),
-              t("Noor Malik", "نور ملک"),
+              t("Sara Javed", "سارہ جاوید"),
+              t("Faizan Javed", "فیضان جاوید"),
+              t("Noor Javed", "نور جاوید"),
             ],
           },
         ],

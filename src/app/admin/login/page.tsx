@@ -19,7 +19,7 @@ export default async function AdminLoginPage() {
       </div>
       {demoMode() ? (
         <p className="mt-4 rounded-2xl bg-blush/50 px-4 py-3 text-xs text-ink/70">
-          Demo mode: sign in with <strong>ahmad.mawra@example.com</strong> /{" "}
+          Demo mode: sign in with <strong>bilal.sara@example.com</strong> /{" "}
           <strong>changeme123</strong>
         </p>
       ) : null}

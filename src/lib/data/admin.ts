@@ -127,7 +127,7 @@ function demoWedding(): AdminWedding {
     theme: base.wedding.theme,
     musicUrl: base.wedding.musicUrl,
     openingImage: base.wedding.openingImage,
-    adminEmail: "ahmad.mawra@example.com",
+    adminEmail: "bilal.sara@example.com",
   };
 }
 

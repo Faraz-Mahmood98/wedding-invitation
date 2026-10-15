@@ -11,7 +11,7 @@ export const runtime = "nodejs";
 const DEMO_PASSWORD = "changeme123";
 const DEMO_ADMINS: Array<{ email: string; role: Role; weddingId: string | null }> = [
   { email: "super@example.com", role: "super_admin", weddingId: null },
-  { email: "ahmad.mawra@example.com", role: "wedding_admin", weddingId: DEMO_WEDDING_ID },
+  { email: "bilal.sara@example.com", role: "wedding_admin", weddingId: DEMO_WEDDING_ID },
 ];
 
 function clientIp(request: Request): string {

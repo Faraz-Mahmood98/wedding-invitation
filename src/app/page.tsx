@@ -8,7 +8,7 @@ import {
 import { DEFAULT_THEME, themeToCssVars, type PaletteKey } from "@/lib/theme";
 import { styleFromCssVars } from "@/lib/css";
 
-const DEMO_COUPLE = { en: "Ahmad & Mawra", ur: "احمد اور ماورہ" };
+const DEMO_COUPLE = { en: "Syed Bilal Zaidi & Sara Javed", ur: "سید بلال زیدی اور سارہ جاوید" };
 
 export default async function Home({
   searchParams,

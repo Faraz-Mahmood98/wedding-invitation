@@ -3,9 +3,9 @@ import { NextResponse, type NextRequest } from "next/server";
 /**
  * Wildcard-subdomain tenancy.
  *
- * `ahmad-mawra.mydomain.com/sara-hassan` is rewritten to the internal route
- * `/w/ahmad-mawra/sara-hassan`. The same route also serves the path form
- * `/w/ahmad-mawra/sara-hassan` directly, which is what local development uses.
+ * `bilal-sara.mydomain.com/sara-hassan` is rewritten to the internal route
+ * `/w/bilal-sara/sara-hassan`. The same route also serves the path form
+ * `/w/bilal-sara/sara-hassan` directly, which is what local development uses.
  *
  * (Next.js treats `_w` as a private, unroutable folder, so the internal prefix
  * is `w` rather than `_w`.)

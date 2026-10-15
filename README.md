@@ -63,11 +63,11 @@ Open http://localhost:3000
 
 | What | URL |
 | --- | --- |
-| Demo wedding home | http://localhost:3000/w/ahmad-mawra |
-| Personal invitation | http://localhost:3000/w/ahmad-mawra/sara-hassan |
+| Demo wedding home | http://localhost:3000/w/bilal-sara |
+| Personal invitation | http://localhost:3000/w/bilal-sara/sara-hassan |
 | Component preview | http://localhost:3000/preview |
 
-Demo guests for the `ahmad-mawra` wedding:
+Demo guests for the `bilal-sara` wedding:
 
 | Slug | Guest | Type | Default language |
 | --- | --- | --- | --- |
@@ -87,7 +87,7 @@ Demo guests for the `ahmad-mawra` wedding:
 On any invitation, choose **Yes / No / Maybe** per event, select seats (capped by
 the guest's allowance), optionally add dietary notes and a message, then press
 **Send RSVP**. In demo mode the success state is shown but nothing is saved;
-`/w/ahmad-mawra/sara-hassan` already shows a pre-filled Mehendi RSVP from the
+`/w/bilal-sara/sara-hassan` already shows a pre-filled Mehendi RSVP from the
 fixture. With a real database the response is stored and pre-filled on return.
 
 ### Admin dashboard
@@ -97,7 +97,7 @@ fixture. With a real database the response is stored and pre-filled on return.
 
    | Email | Password | Role |
    | --- | --- | --- |
-   | `ahmad.mawra@example.com` | `changeme123` | wedding admin |
+   | `bilal.sara@example.com` | `changeme123` | wedding admin |
    | `super@example.com` | `changeme123` | super admin |
 
 3. You land on **Overview**, with navigation for:
@@ -142,7 +142,7 @@ these mutations are validated but not persisted (same banner as the dashboard).
 In production a wedding is reached at `{slug}.example.com/{guestSlug}`. The
 middleware rewrites that to the internal `/w/{slug}/{guestSlug}` route. Locally,
 `{slug}.localhost` usually resolves automatically, so
-http://ahmad-mawra.localhost:3000/sara-hassan works too. Reserved subdomains
+http://bilal-sara.localhost:3000/sara-hassan works too. Reserved subdomains
 (`www`, `app`, `admin`, `super`, `api`, `assets`, `static`) are never treated as
 tenants.
 
@@ -156,7 +156,7 @@ tenants.
 
    ```bash
    npm run db:migrate   # prisma migrate dev (creates + applies a migration)
-   npm run db:seed      # loads "Ahmad & Mawra", 5 guests, events, FAQs, admins
+   npm run db:seed      # loads "Syed Bilal Zaidi & Sara Javed", 5 guests, events, FAQs, admins
    ```
 
    (`npm run db:push` is an alternative that syncs the schema without a
@@ -165,7 +165,7 @@ tenants.
 Admin edits and guest RSVPs now persist, and the invitation gains real RSVP
 pre-filling and open-tracking.
 
-Seed data summary: wedding slug `ahmad-mawra` ("Ahmad & Mawra"), events
+Seed data summary: wedding slug `bilal-sara` ("Syed Bilal Zaidi & Sara Javed"), events
 **Mehendi** (2026-12-04 19:00), **Baraat** (2026-12-05 19:30), **Walima**
 (2026-12-06 20:00) in `Asia/Karachi`, plus 5 guests, 5 FAQs and the two admin
 accounts above.

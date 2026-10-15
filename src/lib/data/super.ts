@@ -45,7 +45,7 @@ function demoSuperWeddings(): SuperWedding[] {
       slug: invitation.wedding.slug,
       coupleNameEn: invitation.wedding.coupleName.en,
       coupleNameUr: invitation.wedding.coupleName.ur,
-      adminEmail: "ahmad.mawra@example.com",
+      adminEmail: "bilal.sara@example.com",
       timezone: invitation.wedding.timezone,
       defaultLang: invitation.wedding.defaultLang,
       createdAt: null,
