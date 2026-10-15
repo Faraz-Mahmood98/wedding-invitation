@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ *
+ * Every wedding can override these at runtime by setting the same CSS
+ * variables on a wrapper element (see `themeToCssVars` in src/lib/theme.ts).
+ * Tailwind maps its utilities to them through `@theme inline` so a single
+ * codebase renders many different palettes / fonts.
+ */
+
+:root {
+  --theme-palette-blush: #f6e2dc;
+  --theme-palette-cream: #fff8f3;
+  --theme-palette-rose: #d98e8e;
+  --theme-palette-deep-rose: #a8505a;
+  --theme-palette-gold: #c9a35b;
+  --theme-palette-ink: #4a2c2f;
+
+  --theme-font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --theme-font-body: var(--font-body-latin), ui-sans-serif, system-ui, sans-serif;
+  --theme-font-arabic: var(--font-amiri), "Amiri", serif;
+  --theme-font-urdu: var(--font-nastaliq), "Noto Nastaliq Urdu", serif;
+
+  --theme-color: var(--theme-palette-deep-rose);
+}
+
+@theme inline {
+  --color-blush: var(--theme-palette-blush);
+  --color-cream: var(--theme-palette-cream);
+  --color-rose: var(--theme-palette-rose);
+  --color-deep-rose: var(--theme-palette-deep-rose);
+  --color-gold: var(--theme-palette-gold);
+  --color-ink: var(--theme-palette-ink);
+
+  --font-display: var(--theme-font-display);
+  --font-body: var(--theme-font-body);
+  --font-arabic: var(--theme-font-arabic);
+  --font-urdu: var(--theme-font-urdu);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background-color: var(--theme-palette-cream);
+  color: var(--theme-palette-ink);
+  font-family: var(--theme-font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Localized text blocks. Never mirror the whole layout. */
+[lang="ur"],
+.font-urdu,
+.text-urdu {
+  font-family: var(--theme-font-urdu);
+  line-height: 2;
+}
+
+[dir="rtl"] {
+  text-align: right;
+}
+
+.font-arabic,
+.text-arabic {
+  font-family: var(--theme-font-arabic);
+}
+
+@media (min-width: 360px) {
+  body {
+    min-width: 320px;
+  }
+}

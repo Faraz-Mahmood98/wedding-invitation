@@ -1,0 +1,69 @@
+{
+  "opening": {
+    "tapToOpen": "Tap to Open",
+    "opening": "Opening…",
+    "invitedTo": "You are invited to the wedding of"
+  },
+  "hero": {
+    "withLove": "With Love",
+    "bismillahTranslation": "In the name of Allah, the Most Gracious, the Most Merciful"
+  },
+  "families": {
+    "groomSide": "Groom's Side",
+    "brideSide": "Bride's Side"
+  },
+  "message": {
+    "dear": "Dear"
+  },
+  "countdown": {
+    "title": "Counting down to",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "scratchReveal": "Scratch to reveal the date",
+    "scratchDone": "See you there!"
+  },
+  "events": {
+    "title": "Events",
+    "onwards": "onwards",
+    "openLocation": "Open Location",
+    "addToCalendar": "Add to calendar",
+    "hostedBy": "Hosted by",
+    "dressCode": "Dress code"
+  },
+  "seats": {
+    "single": "1 Guest Invited",
+    "couple": "2 Guests Invited",
+    "family": "Full Family Invited"
+  },
+  "rsvp": {
+    "title": "Will you attend?",
+    "yes": "Yes",
+    "no": "No",
+    "maybe": "Maybe",
+    "seats": "Seats",
+    "dietary": "Dietary needs",
+    "message": "Message (optional)",
+    "submit": "Send RSVP",
+    "update": "Update RSVP",
+    "submitted": "Thank you, your RSVP has been saved.",
+    "sending": "Sending…",
+    "error": "Something went wrong. Please try again.",
+    "attending": "Attending",
+    "declined": "Declined",
+    "tentative": "Tentative"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions"
+  },
+  "closing": {
+    "message": "We cannot wait to see you there."
+  },
+  "common": {
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "language": "Language",
+    "close": "Close"
+  }
+}

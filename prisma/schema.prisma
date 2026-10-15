@@ -1,0 +1,218 @@
+// Wedding invitation platform — multi-tenant Prisma schema.
+// Every tenant-scoped row either belongs to a Wedding directly or reaches one
+// through a required relation, so all queries can be scoped by weddingId.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Roles for the admin surface.
+enum Role {
+  super_admin
+  wedding_admin
+}
+
+enum Side {
+  groom
+  bride
+}
+
+enum GuestType {
+  single
+  couple
+  family
+}
+
+enum RsvpStatus {
+  yes
+  no
+  maybe
+}
+
+/// A single wedding tenant. Served at {slug}.mydomain.com/{guestSlug}
+/// or /w/{weddingSlug}/{guestSlug} for local development.
+model Wedding {
+  id     String @id @default(cuid())
+  slug   String @unique
+
+  coupleNameEn String
+  coupleNameUr String
+
+  /// { palette: ThemePalette, fonts: ThemeFonts }
+  theme Json
+
+  bismillahEnabled Boolean @default(true)
+  musicUrl         String?
+  openingImage     String?
+  bgImages         String[] @default([])
+
+  /// IANA timezone, e.g. "Asia/Karachi".
+  timezone    String @default("Asia/Karachi")
+  defaultLang String @default("en")
+
+  personalMessageEn String?
+  personalMessageUr String?
+
+  adminEmail   String
+  passwordHash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  events   Event[]
+  families Family[]
+  faqs     Faq[]
+  guests   Guest[]
+  admins   AdminUser[]
+
+  @@index([slug])
+}
+
+/// Admin accounts. super_admin has no weddingId; wedding_admin is scoped to one.
+model AdminUser {
+  id           String  @id @default(cuid())
+  email        String  @unique
+  passwordHash String
+  role         Role    @default(wedding_admin)
+  weddingId    String?
+  wedding      Wedding? @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([weddingId])
+}
+
+model Event {
+  id        String @id @default(cuid())
+  weddingId String
+  wedding   Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+
+  order     Int
+  titleEn   String
+  titleUr   String
+  /// Calendar date of the event (time-of-day is stored separately in startTime).
+  date      DateTime
+  /// Local start time as HH:mm in the wedding timezone, e.g. "19:30".
+  startTime String
+  venueName String
+  address   String
+  mapsUrl   String?
+  hostedByEn String?
+  hostedByUr String?
+  posterImage String?
+  dressNote   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  guestEvents GuestEvent[]
+  rsvps       Rsvp[]
+
+  @@unique([weddingId, order])
+  @@index([weddingId])
+}
+
+model Family {
+  id        String @id @default(cuid())
+  weddingId String
+  wedding   Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+
+  side       Side
+  headNameEn String
+  headNameUr String
+  /// Array of { en: string, ur: string }
+  memberNames Json @default("[]")
+  figureImage String?
+  order       Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([weddingId, side])
+}
+
+model Faq {
+  id        String @id @default(cuid())
+  weddingId String
+  wedding   Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+
+  order      Int
+  questionEn String
+  questionUr String
+  answerEn   String
+  answerUr   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([weddingId, order])
+  @@index([weddingId])
+}
+
+model Guest {
+  id        String @id @default(cuid())
+  weddingId String
+  wedding   Wedding @relation(fields: [weddingId], references: [id], onDelete: Cascade)
+
+  /// URL-safe, unique within a wedding.
+  slug        String
+  displayNameEn String?
+  displayNameUr String?
+  type        GuestType @default(single)
+  phone       String?
+  lang        String    @default("en")
+
+  openedAt  DateTime?
+  openCount Int       @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  guestEvents GuestEvent[]
+  rsvps       Rsvp[]
+
+  @@unique([weddingId, slug])
+  @@index([weddingId])
+}
+
+/// Which events a guest is invited to, and how many seats they hold on each.
+model GuestEvent {
+  id      String @id @default(cuid())
+  guestId String
+  guest   Guest  @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  /// null means the full family is invited (only valid for type = family).
+  seatsAllowed Int?
+
+  createdAt DateTime @default(now())
+
+  @@unique([guestId, eventId])
+  @@index([eventId])
+}
+
+model Rsvp {
+  id      String @id @default(cuid())
+  guestId String
+  guest   Guest  @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  status         RsvpStatus @default(maybe)
+  seatsConfirmed Int        @default(0)
+  dietaryNotes   String?
+  message        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([guestId, eventId])
+  @@index([eventId])
+}
