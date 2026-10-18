@@ -191,6 +191,7 @@ export function toInvitation(input: InvitationInput): Invitation {
       en: input.wedding.coupleNameEn,
       ur: input.wedding.coupleNameUr,
     },
+    monogramInitials: input.wedding.slug === "bilal-sara" ? ["B", "S"] : undefined,
     theme: normalizeTheme(input.wedding.theme),
     bismillahEnabled: input.wedding.bismillahEnabled,
     musicUrl: input.wedding.musicUrl,
