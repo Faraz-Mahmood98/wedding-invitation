@@ -3,6 +3,12 @@ import bcrypt from "bcryptjs";
 import { DEFAULT_THEME } from "../src/lib/theme";
 import { DEFAULT_OPENING_IMAGE } from "../src/lib/images";
 
+try {
+  process.loadEnvFile?.(".env");
+} catch {
+  // no .env or already loaded
+}
+
 const prisma = new PrismaClient();
 
 const WEDDING_SLUG = "bilal-sara";
@@ -269,6 +275,7 @@ async function main() {
         weddingId: wedding.id,
       },
     ],
+    skipDuplicates: true,
   });
 
   console.log(`Seeded wedding "${wedding.coupleNameEn}" (${wedding.slug}).`);
