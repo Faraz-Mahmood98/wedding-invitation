@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession, type SessionPayload } from "./auth";
+import { prisma } from "./prisma";
+import { demoMode } from "./data/invitation";
 
 export type WeddingAdminSession = SessionPayload & { weddingId: string };
 export type SuperAdminSession = SessionPayload & { role: "super_admin" };
@@ -11,7 +13,16 @@ export type SuperAdminSession = SessionPayload & { role: "super_admin" };
 export async function requireWeddingAdmin(): Promise<WeddingAdminSession> {
   const session = await getSession();
   if (!session) redirect("/admin/login");
-  if (session.weddingId) return session as WeddingAdminSession;
+  if (session.weddingId) {
+    if (!demoMode()) {
+      const exists = await prisma.wedding.findUnique({
+        where: { id: session.weddingId },
+        select: { id: true },
+      });
+      if (!exists) redirect("/admin/login");
+    }
+    return session as WeddingAdminSession;
+  }
   redirect("/admin/login?error=forbidden");
 }
 
