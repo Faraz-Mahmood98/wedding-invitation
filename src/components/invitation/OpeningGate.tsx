@@ -14,6 +14,7 @@ interface OpeningGateProps {
   dict: Messages;
   locale: Locale;
   coupleName: LocalizedTextPartial;
+  monogramInitials?: string[];
   image: string | null;
 }
 
@@ -21,14 +22,14 @@ function isRemote(src: string): boolean {
   return /^https?:\/\//i.test(src);
 }
 
-export function OpeningGate({ dict, locale, coupleName, image }: OpeningGateProps) {
+export function OpeningGate({ dict, locale, coupleName, monogramInitials, image }: OpeningGateProps) {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
   const { setOpened, startMusic } = useInvitationUI();
   const isUr = locale === "ur";
 
   const name = pick(coupleName, locale);
-  const initials = initialsFromCoupleName(name);
+  const initials = monogramInitials ?? initialsFromCoupleName(name);
 
   useEffect(() => {
     const root = document.documentElement;

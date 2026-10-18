@@ -45,6 +45,7 @@ export function InvitationView({ invitation, locale }: InvitationViewProps) {
           dict={dict}
           locale={locale}
           coupleName={wedding.coupleName}
+          monogramInitials={wedding.monogramInitials}
           image={wedding.openingImage}
         />
         <MusicToggle labels={{ mute: dict.common.mute, unmute: dict.common.unmute }} />
@@ -96,7 +97,7 @@ export function InvitationView({ invitation, locale }: InvitationViewProps) {
             <FaqSection dict={dict} locale={locale} faqs={faqs} />
           </Reveal>
           <Reveal>
-            <Closing dict={dict} locale={locale} coupleName={wedding.coupleName} />
+            <Closing dict={dict} locale={locale} coupleName={wedding.coupleName} monogramInitials={wedding.monogramInitials} />
           </Reveal>
         </main>
       </div>

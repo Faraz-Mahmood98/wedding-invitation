@@ -15,6 +15,8 @@ export interface InvitationRsvp {
 export interface InvitationWedding {
   slug: string;
   coupleName: LocalizedText;
+  /** Optional override for the monogram initials. When set, used instead of deriving from coupleName. */
+  monogramInitials?: string[];
   theme: WeddingTheme;
   bismillahEnabled: boolean;
   musicUrl: string | null;

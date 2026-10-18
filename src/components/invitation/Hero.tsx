@@ -15,7 +15,7 @@ interface HeroProps {
 }
 
 export function Hero({ dict, locale, wedding, firstEvent }: HeroProps) {
-  const initials = initialsFromCoupleName(pick(wedding.coupleName, locale));
+  const initials = wedding.monogramInitials ?? initialsFromCoupleName(pick(wedding.coupleName, locale));
 
   return (
     <section className="relative flex flex-col items-center overflow-hidden px-6 pt-20 pb-14 text-center sm:pt-28">

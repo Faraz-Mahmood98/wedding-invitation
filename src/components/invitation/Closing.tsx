@@ -9,11 +9,12 @@ interface ClosingProps {
   dict: Messages;
   locale: Locale;
   coupleName: LocalizedTextPartial;
+  monogramInitials?: string[];
 }
 
-export function Closing({ dict, locale, coupleName }: ClosingProps) {
+export function Closing({ dict, locale, coupleName, monogramInitials }: ClosingProps) {
   const isUr = locale === "ur";
-  const initials = initialsFromCoupleName(pick(coupleName, locale));
+  const initials = monogramInitials ?? initialsFromCoupleName(pick(coupleName, locale));
 
   return (
     <section className="relative overflow-hidden rounded-t-3xl bg-blush/40 px-6 pb-16 pt-12 text-center">
